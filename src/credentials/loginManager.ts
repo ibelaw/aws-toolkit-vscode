@@ -56,6 +56,7 @@ export class LoginManager {
                 accountId: accountId,
                 defaultRegion: provider.getDefaultRegion()
             })
+
             return storedCredentials.credentials.accessKeyId
         } catch (err) {
             loginResult = 'Failed'
@@ -73,6 +74,7 @@ export class LoginManager {
         } finally {
             recordAwsSetCredentials({ result: loginResult })
         }
+
         return ''
     }
 

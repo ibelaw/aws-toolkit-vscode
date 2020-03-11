@@ -10,8 +10,8 @@ import { CredentialsProfileMru } from '../shared/credentials/credentialsProfileM
 import { SettingsConfiguration } from '../shared/settingsConfiguration'
 import { LoginManager } from './loginManager'
 import { CredentialsProviderId, fromString } from './providers/credentialsProviderId'
-import { SharedCredentialsProvider } from './providers/sharedCredentialsProvider'
 import { CredentialsProviderManager } from './providers/credentialsProviderManager'
+import { SharedCredentialsProvider } from './providers/sharedCredentialsProvider'
 
 export interface CredentialsInitializeParameters {
     extensionContext: vscode.ExtensionContext

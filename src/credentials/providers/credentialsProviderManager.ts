@@ -5,7 +5,7 @@
 
 import { CredentialsProvider } from './credentialsProvider'
 import { CredentialsProviderFactory } from './credentialsProviderFactory'
-import { CredentialsProviderId, asString } from './credentialsProviderId'
+import { asString, CredentialsProviderId } from './credentialsProviderId'
 
 /**
  * Responsible for providing the Toolkit with all available CredentialsProviders.
@@ -35,6 +35,7 @@ export class CredentialsProviderManager {
         for (const o of await this.getAllCredentialsProviders()) {
             m[asString(o.getCredentialsProviderId())] = o.getCredentialsProviderId()
         }
+
         return m
     }
 

@@ -18,10 +18,10 @@ import { RegionNode } from './regionNode'
 
 const ROOT_NODE_SIGN_IN = new AWSCommandTreeNode(
     undefined,
-    localize('AWS.explorerNode.signIn', 'Connect to AWS...'),
+    localize('AWS.explorerNode.connecting.label', 'Connecting...'),
     'aws.login',
     undefined,
-    localize('AWS.explorerNode.signIn.tooltip', 'Click here to select credentials for the AWS Toolkit')
+    localize('AWS.explorerNode.connecting.tooltip', 'Connecting...')
 )
 
 const ROOT_NODE_ADD_REGION = new AWSCommandTreeNode(
@@ -43,6 +43,12 @@ export class AwsExplorer implements vscode.TreeDataProvider<AWSTreeNodeBase>, Re
         this._onDidChangeTreeData = new vscode.EventEmitter<AWSTreeNodeBase | undefined>()
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
         this.regionNodes = new Map<string, RegionNode>()
+        this.awsContext.onDidChangeContext((e) => {
+            if (!e.accountId) {
+                ROOT_NODE_SIGN_IN.label = localize('AWS.explorerNode.signIn', 'Connect to AWS...')
+                ROOT_NODE_SIGN_IN.tooltip = localize('AWS.explorerNode.signIn.tooltip', 'Click here to select credentials for the AWS Toolkit')
+            }
+        })
 
         this.regionProvider.onRegionProviderUpdated(() => {
             this.logger.verbose('Refreshing AWS Explorer due to Region Provider updates')
